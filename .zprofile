@@ -21,6 +21,9 @@ alias zupd='cd ~/dotfiles && ga && git commit --amend && gpo -f master && cd -'
 alias lh='ls -a'
 alias sof='xset dpms force off' # Turn off screen (on linux).
 
+alias ccc='clear'
+
+export EDITOR="/usr/bin/vim"
 
 # KEYBINDINGS ==================================================================
 
@@ -118,6 +121,7 @@ alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_glob
 alias am='atom ./'
 alias sb='subl ./'
 
+
 # WEB ==========================================================================
 
 alias psv='python -m SimpleHTTPServer 8000'
@@ -134,3 +138,9 @@ alias nlinks='\ls -F node_modules | sed -n 's/@$//p' | xargs npm ls -g --depth 0
 
 alias dm='docker-machine'
 alias dc='docker-compose'
+
+
+# PYTHON =======================================================================
+
+# added by Miniconda3 4.3.11 installer
+export PATH="/Users/hdavidzhu/miniconda3/bin:$PATH"
