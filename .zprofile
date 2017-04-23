@@ -74,6 +74,22 @@ alias gs='git status'
 alias gb='git branch'
 alias gba='git branch -a'
 
+gbst() {
+  command git for-each-ref --format="%(refname:short) %(upstream:short)" refs/ | \
+  while read local remote
+  do
+    if [ -x $remote ]; then
+      # Ignore remote references
+    else
+      master="origin/master"
+      git rev-list --left-right ${local}...${master} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
+      LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
+      RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
+      printf "%-25s \x1B[31m%-3s\x1B[0m \x1B[32m%-3s\x1B[0m \n" "$local" "$RIGHT_AHEAD" "$LEFT_AHEAD"
+    fi;
+  done  | grep -v "^origin/master" | sort | uniq
+}
+
 # New.
 alias gco='git checkout'
 alias gcob='git checkout -b'
@@ -109,7 +125,7 @@ gsp() {
 alias gconf='git diff --name-only --diff-filter=U'
 alias gcl='git remote prune origin'
 gitbranchclear() { git branch --merged | grep -v '\*' | xargs -n 1 git branch -d }
-alias gclb='gitbranchclear && gcl'
+alias gclb='gcl && gitbranchclear && gcl'
 
 # Update dotfiles.
 alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_global'
@@ -118,6 +134,8 @@ alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_glob
 # TEXT EDITORS =================================================================
 
 alias am='atom ./'
+alias amsave='apm list --installed --bare > ~/dotfiles/atom/package.list && zupd'
+alias amload='apm install --packages-file ~/dotfiles/atom/package.list'
 alias sb='subl ./'
 
 

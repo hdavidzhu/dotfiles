@@ -8,5 +8,7 @@ ln -s $BASEDIR/.zprofile ~/.zprofile
 ln -s $BASEDIR/.gitignore_global ~/.gitignore_global
 ln -s $BASEDIR/.vimrc ~/.vimrc
 
+ln -s $BASEDIR/atom/config.cson ~/.atom/config.cson
+
 # Install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
