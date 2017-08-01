@@ -1,28 +1,32 @@
-# SETUP ========================================================================
+# INSTALL ======================================================================
 
-# ulimit -n 65536
-# ulimit -u 2048
+source /usr/local/share/antigen/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
+
+antigen apply
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/lever/bash/lever-profile
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # BASIC ========================================================================
 
-plugins=(
-  git \
-  ruby \
-  gem \
-  history \
-  history-substring-search \
-  terminalapp brew nanoc \
-  zsh-syntax-highlighting \
-)
-
-alias ss='source ~/dotfiles/.zprofile'
-alias zupd='cd ~/dotfiles && ga && git commit --amend && gpo -f master && cd -'
+alias ss='source ~/.zshrc'
+alias zupd='cd ~/dotfiles && ga && git commit -m "Update." && gpo -f master && cd -'
 alias lh='ls -a'
 alias sof='xset dpms force off' # Turn off screen (on linux).
 alias ccc='clear'
 
-export EDITOR="/usr/bin/vim"
 
 # KEYBINDINGS ==================================================================
 
@@ -38,33 +42,6 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-
-
-# COLORS =======================================================================
-
-autoload colors; colors;
-
-LS_COLORS='di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32';
-LSCOLORS='ExGxFxDxCxDxDxhbhdacEc';
-
-# Do we need Linux or BSD Style?
-if ls --color -d . &>/dev/null 2>&1
-then
-  # Linux Style
-  export LS_COLORS=$LS_COLORS
-  # alias ls='ls --color=tty'
-  alias ls='ls --color -h --group-directories-first'
-else
-  # BSD Style
-  export LSCOLORS=$LSCOLORS
-  alias ls='ls -G'
-fi
-
-# Use same colors for autocompletion
-zmodload -a colors
-zmodload -a autocomplete
-zmodload -a complist
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 
 # GIT ==========================================================================
@@ -90,11 +67,11 @@ gbst() {
   done  | grep -v "^origin/master" | sort | uniq
 }
 
-# New.
+# New
 alias gco='git checkout'
 alias gcob='git checkout -b'
 
-# Making a commit.
+# Making a commit
 alias ga='git add .'
 alias gr='git reset'
 alias gd='git diff'
@@ -103,12 +80,12 @@ alias gcm='git commit -m'
 alias gpo='git push -u origin'
 alias gg='git pull origin'
 
-# Rebasing.
+# Rebasing
 alias gfa='git fetch --all'
 alias gri='git rebase -i'
 alias grc='git rebase --continue'
 
-# Stashing.
+# Stashing
 alias gst='git stash'
 alias gsl='git stash list'
 gsshow() { command git stash show -p stash@{$1} }
@@ -121,28 +98,35 @@ gsp() {
   fi
 }
 
-# Housecleaning.
+# Housecleaning
 alias gconf='git diff --name-only --diff-filter=U'
 alias gcl='git remote prune origin'
 gitbranchclear() { git branch --merged | grep -v '\*' | xargs -n 1 git branch -d }
 alias gclb='gcl && gitbranchclear && gcl'
 
-# Update dotfiles.
+# Update dotfiles
 alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_global'
 
 
 # TEXT EDITORS =================================================================
 
-alias am='atom ./'
-alias amsave='apm list --installed --bare > ~/dotfiles/atom/package.list && zupd'
-alias amload='apm install --packages-file ~/dotfiles/atom/package.list'
-alias sb='subl ./'
+alias v="nvim"
+
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --follow --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 # WEB ==========================================================================
 
 alias psv='python -m SimpleHTTPServer 8000'
-alias gp='gulp'
+alias zmocha='./node_modules/.bin/mocha'
+alias niu='npm install && npm update'
+alias niu0='niu --depth 0'
 
 
 # NODE =========================================================================
@@ -155,9 +139,3 @@ alias nlinks='\ls -F node_modules | sed -n 's/@$//p' | xargs npm ls -g --depth 0
 
 alias dm='docker-machine'
 alias dc='docker-compose'
-
-
-# PYTHON =======================================================================
-
-# added by Miniconda3 4.3.11 installer
-export PATH="/Users/hdavidzhu/miniconda3/bin:$PATH"
