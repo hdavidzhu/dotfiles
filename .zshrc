@@ -1,13 +1,12 @@
 # INSTALL ======================================================================
 
-source /usr/local/share/antigen/antigen.zsh
+source $HOME/env.sh
 
+source $PATH_ANTIGEN
 antigen use oh-my-zsh
-
 antigen bundle git
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
-
 antigen apply
 
 export NVM_DIR="$HOME/.nvm"
@@ -21,9 +20,10 @@ source ~/lever/bash/lever-profile
 
 # BASIC ========================================================================
 
+bindkey -v
+
 alias ss='source ~/.zshrc'
 alias zupd='cd ~/dotfiles && ga && git commit -m "Update." && gpo -f master && cd -'
-alias lh='ls -a'
 alias sof='xset dpms force off' # Turn off screen (on linux).
 alias ccc='clear'
 
@@ -123,7 +123,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # WEB ==========================================================================
 
-alias psv='python -m SimpleHTTPServer 8000'
 alias zmocha='./node_modules/.bin/mocha'
 alias niu='npm install && npm update'
 alias niu0='niu --depth 0'
@@ -134,8 +133,3 @@ alias niu0='niu --depth 0'
 # List of linked npm packages.
 alias nlinks='\ls -F node_modules | sed -n 's/@$//p' | xargs npm ls -g --depth 0'
 
-
-# DOCKER =======================================================================
-
-alias dm='docker-machine'
-alias dc='docker-compose'
