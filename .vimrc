@@ -26,7 +26,9 @@ filetype plugin indent on
 
 " Theme
 syntax on
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
 set background=light
 let g:one_allow_italics = 1 " Comment italics
 colorscheme one
