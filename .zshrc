@@ -4,6 +4,7 @@ source $HOME/env.sh
 
 source $PATH_ANTIGEN
 antigen use oh-my-zsh
+antigen bundle history-substring-search
 antigen bundle git
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
