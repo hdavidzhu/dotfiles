@@ -11,11 +11,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'jiangmiao/auto-pairs' " Closing braces
 Plugin 'junegunn/fzf.vim'
 Plugin 'kchmck/vim-coffee-script' " Coffeescript support
 Plugin 'rakr/vim-one'
 Plugin 'scrooloose/nerdtree' " Tree
 Plugin 'sheerun/vim-polyglot' " Language support
+Plugin 'w0rp/ale' " Async linter
 Plugin 'VundleVim/Vundle.vim' " Vundle manages itself
 call vundle#end()
 
@@ -45,3 +47,7 @@ set shiftwidth=2 " When indenting with '>', use 2 spaces width
 
 autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces
 
+" PLUGINS ====================================================================
+
+" NERDTree
+let NERDTreeMapOpenInTab='\r'
