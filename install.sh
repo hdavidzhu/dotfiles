@@ -3,7 +3,7 @@
 BASEDIR=`dirname $0`
 
 # Set up symbolink links to the correct documents
-ln -s $BASEDIR/src/index.sh ~/.zshrc
+grep -q -F 'source ~/dotfiles/src/index.sh' ~/.zshrc || echo 'source ~/dotfiles/src/index.sh' >> ~/.zshrc
 ln -s $BASEDIR/.gitignore_global ~/.gitignore_global
 ln -s $BASEDIR/.vimrc ~/.vimrc
 ln -s $BASEDIR/.tmux.conf ~/.tmux.conf
