@@ -1,30 +1,3 @@
-# BASIC ========================================================================
-
-bindkey -v
-
-alias ss='source ~/.zshrc'
-alias sof='xset dpms force off' # Turn off screen (on linux).
-alias ccc='clear'
-
-
-# KEYBINDINGS ==================================================================
-
-# Allows for Ctrl-Z to toggle background processes.
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-
-# GIT ==========================================================================
-
 # Status.
 alias gs='git status'
 alias gb='git branch'
@@ -86,21 +59,3 @@ alias gclb='gcl && gitbranchclear && gcl'
 
 # Update dotfiles
 alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_global'
-
-
-# TEXT EDITORS =================================================================
-
-alias v="nvim"
-
-
-# WEB ==========================================================================
-
-alias zmocha='./node_modules/.bin/mocha'
-alias niu='npm install && npm update'
-alias niu0='niu --depth 0'
-
-
-# NODE =========================================================================
-
-# List of linked npm packages.
-alias nlinks='\ls -F node_modules | sed -n 's/@$//p' | xargs npm ls -g --depth 0'

@@ -1,4 +1,4 @@
-" INSTALLS ====================================================================
+" INSTALLS =====================================================================
 
 set nocompatible
 filetype off
@@ -24,7 +24,7 @@ call vundle#end()
 filetype plugin indent on
 
 
-" CONFIG =====================================================================
+" CONFIG =======================================================================
 
 " Theme
 syntax on
@@ -47,7 +47,7 @@ set shiftwidth=2 " When indenting with '>', use 2 spaces width
 
 autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces
 
-" PLUGINS ====================================================================
+" PLUGINS ======================================================================
 
 " NERDTree
 let NERDTreeMapOpenInTab='\r'
