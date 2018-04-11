@@ -1,30 +1,8 @@
-# INSTALL ======================================================================
-
-source $HOME/env.sh
-
-source $PATH_ANTIGEN
-antigen use oh-my-zsh
-antigen bundle history-substring-search
-antigen bundle git
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
-antigen apply
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-source ~/lever/bash/lever-profile
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 # BASIC ========================================================================
 
 bindkey -v
 
 alias ss='source ~/.zshrc'
-alias zupd='cd ~/dotfiles && ga && git commit -m "Update." && gpo -f master && cd -'
 alias sof='xset dpms force off' # Turn off screen (on linux).
 alias ccc='clear'
 
@@ -79,7 +57,8 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gcm='git commit -m'
 alias gpo='git push -u origin'
-alias gg='git pull origin'
+alias gg='git pull -r origin'
+alias ggm='gg master'
 
 # Rebasing
 alias gfa='git fetch --all'
@@ -113,14 +92,6 @@ alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_glob
 
 alias v="nvim"
 
-# --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc...
-# --hidden: Search hidden files and folders
-# --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --follow --glob "!.git/*"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 
 # WEB ==========================================================================
 
@@ -133,4 +104,3 @@ alias niu0='niu --depth 0'
 
 # List of linked npm packages.
 alias nlinks='\ls -F node_modules | sed -n 's/@$//p' | xargs npm ls -g --depth 0'
-
