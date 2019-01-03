@@ -16,3 +16,12 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# Run a command multiple times
+function run() {
+  number=$1
+  shift
+  for n in $(seq $number); do
+    $@
+  done
+}
