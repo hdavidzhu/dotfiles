@@ -1,4 +1,7 @@
-# Status.
+# Update dotfiles
+alias gglobal='git config --global core.excludesfile ~/dotfiles/.gitignore_global'
+
+# Status
 alias gs='git status'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -23,15 +26,16 @@ gbst() {
 alias gco='git checkout'
 alias gcob='git checkout -b'
 
+# Pull
+alias gg='git pull -r origin'
+alias ggm='gg master'
+alias gpa='ls | xargs -P10 -I{} git -C {} pull'
+
 # Making a commit
 alias ga='git add .'
-alias gr='git reset'
-alias gd='git diff'
 alias gds='git diff --staged'
 alias gcm='git commit -m'
 alias gpo='git push -u origin'
-alias gg='git pull -r origin'
-alias ggm='gg master'
 
 # Rebasing
 alias gfa='git fetch --all'
@@ -56,6 +60,3 @@ alias gconf='git diff --name-only --diff-filter=U'
 alias gcl='git remote prune origin'
 gitbranchclear() { git branch --merged | grep -v '\*' | xargs -n 1 git branch -d }
 alias gclb='gcl && gitbranchclear && gcl'
-
-# Update dotfiles
-alias gitglobe='git config --global core.excludesfile ~/dotfiles/.gitignore_global'
