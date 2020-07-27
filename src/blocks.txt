@@ -3,4 +3,5 @@ news.ycombinator.com
 nytimes.com
 reddit.com/r/all
 reddit.com/r/videos
+www.youtube.com###secondary
 youtube.com$
