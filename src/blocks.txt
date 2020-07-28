@@ -1,7 +1,8 @@
-facebook.com
-news.ycombinator.com
-nytimes.com
-reddit.com/r/all
-reddit.com/r/videos
+||facebook.com^|$document
+||news.ycombinator.com^|$document
+||nytimes.com^|$document
+||reddit.com/r/all^|$document
+||reddit.com/r/videos^|$document
+||reddit.com^|$document
+||youtube.com^|$document
 www.youtube.com###secondary
-youtube.com$
