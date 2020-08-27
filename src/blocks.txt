@@ -4,5 +4,6 @@
 ||reddit.com/r/all^|$document
 ||reddit.com/r/videos^|$document
 ||reddit.com^|$document
+||twitter.com^|$document
 ||youtube.com^|$document
 www.youtube.com###secondary
