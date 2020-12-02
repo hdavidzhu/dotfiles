@@ -5,5 +5,6 @@
 ||reddit.com/r/videos^|$document
 ||reddit.com^|$document
 ||twitter.com^|$document
+||twitter.com/home
 ||youtube.com^|$document
 www.youtube.com###secondary
