@@ -1,10 +1,10 @@
 ||facebook.com^|$document
 ||news.ycombinator.com^|$document
 ||nytimes.com^|$document
-||reddit.com/r/all^|$document
-||reddit.com/r/videos^|$document
 ||reddit.com^|$document
-||twitter.com^|$document
 ||twitter.com/home
+||twitter.com^|$document
 ||youtube.com^|$document
+reddit.com/r/all
+reddit.com/r/videos
 www.youtube.com###secondary
