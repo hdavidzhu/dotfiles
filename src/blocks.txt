@@ -6,6 +6,7 @@
 ||reddit.com^|$document
 reddit.com/r/all
 reddit.com/r/videos
+reddit.com##.m-next.PaginationButtons__button
 
 ||news.ycombinator.com^|$document
 news.ycombinator.com##.morelink
