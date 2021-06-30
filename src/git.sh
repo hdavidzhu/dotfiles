@@ -5,6 +5,7 @@ alias gglobal='git config --global core.excludesfile ~/dotfiles/.gitignore_globa
 alias gs='git status'
 alias gb='git branch'
 alias gba='git branch -a'
+alias glog='git log --all --decorate --oneline --graph'
 
 gbst() {
   command git for-each-ref --format="%(refname:short) %(upstream:short)" refs/ | \

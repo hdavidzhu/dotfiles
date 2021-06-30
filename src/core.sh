@@ -1,8 +1,9 @@
 bindkey -v
 
-alias ss='source ~/.zshrc'
-alias sof='xset dpms force off' # Turn off screen (on linux).
 alias ccc='clear'
+alias editor="vim"
+alias sof='xset dpms force off' # Turn off screen (on linux).
+alias ss='source ~/.zshrc'
 
 # Allows for Ctrl-Z to toggle background processes.
 fancy-ctrl-z () {

@@ -1,16 +1,16 @@
 #!/usr/bin/env zsh
 
-BASEDIR=`dirname $0`
+BASE_DIR=`dirname $0`
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Set up symbolink links to the correct documents
 grep -q -F 'source ~/dotfiles/src/index.sh' ~/.zshrc || echo 'source ~/dotfiles/src/index.sh' >> ~/.zshrc
-ln -s $BASEDIR/.gitignore_global ~/.gitignore_global
-ln -s $BASEDIR/.vimrc ~/.vimrc
-ln -s $BASEDIR/.tmux.conf ~/.tmux.conf
+ln -s $BASE_DIR/.gitignore_global ~/.gitignore_global
+ln -s $BASE_DIR/.vimrc ~/.vimrc
+ln -s $BASE_DIR/.tmux.conf ~/.tmux.conf
 
 # Install Vundle
 git clone --quiet https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall < /dev/tty
-
-# Install Antigen
-curl -L git.io/antigen > $BASEDIR/libs/antigen.zsh
