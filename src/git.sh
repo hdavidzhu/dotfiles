@@ -14,13 +14,13 @@ gbst() {
     if [ -x $remote ]; then
       # Ignore remote references
     else
-      master="origin/master"
-      git rev-list --left-right ${local}...${master} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
+      main="origin/main"
+      git rev-list --left-right ${local}...${main} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
       LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
       RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
       printf "%-25s \x1B[31m%-3s\x1B[0m \x1B[32m%-3s\x1B[0m \n" "$local" "$RIGHT_AHEAD" "$LEFT_AHEAD"
     fi;
-  done  | grep -v "^origin/master" | sort | uniq
+  done  | grep -v "^origin/main" | sort | uniq
 }
 
 # New
@@ -29,7 +29,7 @@ alias gcob='git checkout -b'
 
 # Pull
 alias gg='git pull -r origin'
-alias ggm='gg master'
+alias ggm='gg main'
 alias gpa='ls | xargs -P10 -I{} git -C {} pull'
 
 # Making a commit
@@ -61,5 +61,5 @@ alias gconf='git diff --name-only --diff-filter=U'
 alias gcl='git remote prune origin'
 gitbranchclear() { git branch --merged | grep -v '\*' | xargs -n 1 git branch -d }
 alias gclb='gcl && gitbranchclear && gcl'
-alias gscb='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+alias gscb='git checkout -q main && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
 
