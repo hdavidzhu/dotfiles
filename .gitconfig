@@ -1,0 +1,2 @@
+[alias]
+vlog = !"python3 /workspaces/.codespaces/.persistedshare/dotfiles/vanta_log.py | less -R"
